@@ -1,0 +1,93 @@
+Session 3-Tasks
+
+
+1.How to compare two json having the same properties without order.
+ let obj1={name:"Person1",age:5}
+ let obj2={age:5,name:"Person1"}
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>function areJSONObjectsEqual(obj1, obj2) {
+        // Convert JSON strings to JavaScript objects
+        const jsObj1 = JSON.parse(JSON.stringify(obj1));
+        const jsObj2 = JSON.parse(JSON.stringify(obj2));
+      
+        const keys1 = Object.keys(jsObj1);
+        const keys2 = Object.keys(jsObj2);
+      
+        // Check if the objects have the same keys
+        if (keys1.length !== keys2.length || !keys1.every(key => keys2.includes(key))) {
+          return false;
+        }
+      
+        // Compare values for each key
+        for (const key of keys1) {
+          if (jsObj1[key] !== jsObj2[key]) {
+            return false;
+          }
+        }
+      
+        return true;
+      }
+      
+      const obj1 = { name: "Person1", age: 5 };
+      const obj2 = { age: 5, name: "Person1" };
+      
+      if (areJSONObjectsEqual(obj1, obj2)) {
+        console.log("The JSON objects are equal.");
+      } else {
+        console.log("The JSON objects are not equal.");
+      }</script>
+    
+</body>
+</html>sa
+
+
+
+2.User rest countries Url and display the flags in the console
+
+const xhr=new XMLHttpRequest()
+
+xhr.open("GET","https://restcountries.com/v3.1/all",true)
+xhr.send()
+xhr.onload=function()
+{
+     var data=JSON.parse(this.response)
+    console.log(data)
+     
+    
+for(var k in data){
+    const result =data[k].flag
+    console.log(result)
+}
+}
+
+
+
+
+3.User rest countries url and print all countries name regions subregions and population.
+
+const xhr=new XMLHttpRequest()
+
+xhr.open("GET","https://restcountries.com/v3.1/all",true)
+xhr.send()
+xhr.onload=function()
+{
+     var data=JSON.parse(this.response)
+    console.log(data)
+     
+    
+for(var k in data){
+    const result =data[k].name.common
+    const result1=data[k].region
+    const result2=data[k].subregion
+    const result3=data[k].population
+    console.log(result,result1,result2,result3)
+}
+}
